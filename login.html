@@ -1,0 +1,64 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <script defer src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"></script> <!--Needed for font awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <title>SAP Media</title>
+  </head>
+  <div class="hero hero is-small is-primary has-background-black"> <!--Background color-->
+    <div class="hero-body">
+      <h1 class="title has-text-link is-bold">SAP Media</h1>
+    </div>
+  </div>
+  <div class="hero is-primary is-fullheight has-background-link"> <!--Background color-->
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-4">
+            <form action="" class="box">
+              <div class="field">
+                <label class="label"> <!--Label for Username field-->
+                  Username
+                </label>
+                <div class="control has-icons-left">
+                  <input type="username" class="input" placeholder="username">
+                  <span class="icon is-small is-left">
+                    <i class="fa-solid fa-user"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label">Password</label>
+                <div class="control has-icons-left">
+                  <input type="password" class="input" placeholder="password">
+                  <span class="icon is-small is-left">
+                    <i class="fa fa-lock"></i>
+                  </span>
+                </div>
+              </div>
+              <div class="field">
+                <label class="label"> <!--Remeber me button-->
+                  <input type="checkbox" class="checkbox">
+                  Remeber Me
+                </label>
+              </div>
+              <div class="field"> <!--Login button-->
+                <button class="button is-success has-background-link">Login</button>
+              </div>
+              <label class="label"> <!--Label for Register button-->
+                Not Registered?
+              </label>
+              <div class="field"> <!--Register button-->
+                <a href="/register.html" class="button is-success has-background-danger">Register</a>
+              </div>
+            </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</html>

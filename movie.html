@@ -1,0 +1,101 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"
+    ></script>
+    <!--Needed for font awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <title>SAP Media</title>
+  </head>
+  <body>
+    <nav class="navbar is-link">
+      <!--Navbar-->
+      <div class="container">
+        <div class="navbar-brand">
+          <h1 class="title has-text-white">Add Movie</h1>
+        </div>
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <a href="user.html" class="navbar-item">Home</a>
+            <a href="movie.html" class="navbar-item">Add Movie</a>
+            <a href="login.html" class="navbar-item">Login</a>
+            <a href="admin.html" class="navbar-item">Admin Page</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="hero is-primary is-fullheight has-background-black">
+      <!--Background color-->
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-6">
+              <form action="" class="box">
+                <div class="field">
+                  <label class="label"> Movie Title </label>
+                  <div class="control has-icons-left">
+                    <input
+                      type="username"
+                      class="input"
+                      placeholder="Happy Gilmore"
+                    />
+                    <span class="icon is-small is-left">
+                      <i class="fa-sharp fa-solid fa-video"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label"> Genre </label>
+                  <div class="control has-icons-left">
+                    <input type="username" class="input" placeholder="Comedy" />
+                    <span class="icon is-small is-left">
+                      <i class="fa-solid fa-icons"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Platform</label>
+                  <div class="control has-icons-left">
+                    <input
+                      type="password"
+                      class="input"
+                      placeholder="Netflix"
+                    />
+                    <span class="icon is-small is-left">
+                      <i class="fa-solid fa-ticket"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Movie Info</label>
+                  <div class="control has-icons-left">
+                    <input
+                      type="password"
+                      class="input"
+                      placeholder="Adam Sandler plays a hockey player who is secretly great at golf"
+                    />
+                    <span class="icon is-small is-left">
+                      <i class="fa-solid fa-pencil"></i>
+                    </span>
+                  </div>
+                </div>
+                <div class="field">
+                  <button class="button is-success has-background-danger">
+                    Add Movie To Library
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
