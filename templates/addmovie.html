@@ -17,10 +17,11 @@
         </div>
         <div id="navMenu" class="navbar-menu">
           <div class="navbar-end">
-            <a href="user.html" class="navbar-item">Home</a>
-            <a href="{{ url_for('movie')}}" class="navbar-item">Add Movie</a>
+            <a href="home.html" class="navbar-item">Home</a>
+            <a href="{{ url_for('addmovie')}}" class="navbar-item">Add Movie</a>
             <a href="login.html" class="navbar-item">Login</a>
-            <a href="admin.html" class="navbar-item">Admin Page</a>
+            <a href="profile.html" class="navbar-item">Profile Page</a>
+            <a href="editmovie.html" class="navbar-item">Edit Movie</a>
           </div>
         </div>
       </div>
@@ -31,7 +32,7 @@
         <div class="container">
           <div class="columns is-centered">
             <div class="column is-6">
-              <form action="{{ url_for('movie')}}" method="post" class="box">
+              <form action="{{ url_for('addmovie')}}" method="post" class="box">
                 <div class="field">
                   <div class="msg">{{ msg }}</div>
                   <label class="label"> Movie Title </label>
@@ -40,26 +41,23 @@
                       type="text"
                       class="input"
                       placeholder="Happy Gilmore"
-                      name="movieTitle"
                     />
                   </div>
                 </div>
                 <div class="field">
                   <label class="label"> Genre </label>
                   <div class="control">
-                    <input type="username" class="input" placeholder="Comedy" name="genre"/>
+                    <input type="text" class="input" placeholder="Comedy" />
                   </div>
                 </div>
-                <div class="field">
-                  <label class="label">Platform</label>
-                  <div class="control">
-                    <input
-                      type="text"
-                      class="input"
-                      placeholder="Netflix"
-                      name="platform"
-                    />
-                  </div>
+                <label class="label"> Platform </label>
+                <div class="select">
+                  <select>
+                    <option>Netflix</option>
+                    <option>Hulu</option>
+                    <opion>Disney+</opion>
+                    <option>HBO Max</option>
+                  </select>
                 </div>
                 <div class="field">
                   <label class="label">Movie Info</label>
@@ -68,14 +66,13 @@
                       type="text"
                       class="input"
                       placeholder="Adam Sandler plays a hockey player who is secretly great at golf"
-                      name="summary"
                     />
                   </div>
                 </div>
                 <div class="field">
                   <label class="label">Movie Time (in Minutes)</label>
                   <div class="control">
-                    <input type="text" class="input" placeholder="92" name="movieTime"/>
+                    <input type="text" class="input" placeholder="92" />
                   </div>
                 </div>
                 <div class="field">
@@ -85,37 +82,48 @@
                       type="text"
                       class="input"
                       placeholder="Dennis Dugan"
-                      name="director"
                     />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">User Rating</label>
+                  <div class="control">
+                    <input type="text" class="input" placeholder="4.7" />
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Platform Rating</label>
+                  <div class="control">
+                    <input type="text" class="input" placeholder="3.9" />
                   </div>
                 </div>
                 <div id="file-js-example" class="file has-name">
                   <label class="file-label">
-                    <input class="file-input" type="file" name="moviePoster">
+                    <input class="file-input" type="file" name="moviePoster" />
                     <span class="file-cta">
                       <span class="file-icon">
                         <i class="fas fa-upload"></i>
                       </span>
-                      <span class="file-label">
-                        Choose a file…
-                      </span>
+                      <span class="file-label"> Choose a file… </span>
                     </span>
-                    <span class="file-name">
-                      No file uploaded
-                    </span>
+                    <span class="file-name"> No file uploaded </span>
                   </label>
                 </div>
-                
+
                 <script>
-                  const fileInput = document.querySelector('#file-js-example input[type=file]');
+                  const fileInput = document.querySelector(
+                    "#file-js-example input[type=file]"
+                  );
                   fileInput.onchange = () => {
                     if (fileInput.files.length > 0) {
-                      const fileName = document.querySelector('#file-js-example .file-name');
+                      const fileName = document.querySelector(
+                        "#file-js-example .file-name"
+                      );
                       fileName.textContent = fileInput.files[0].name;
                     }
-                  }
+                  };
                 </script>
-              <br />
+                <br />
                 <div class="field">
                   <button class="button is-success has-background-danger">
                     Add Movie To Library
