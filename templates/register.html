@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
+
     <script defer src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"></script> <!--Needed for font awesome-->
     <link
       rel="stylesheet"
@@ -20,8 +20,9 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-4">
-            <form action="{{ url_for('login')}}" method="post" class="box">
+            <form action="{{ url_for('register')}}" method="post" class="box">
               <div class="field">
+                <div class="msg">{{ msg }}</div>
                 <label class="label"> <!--Label for Username field-->
                   Username
                 </label>
@@ -68,7 +69,7 @@
                 Go To Login
               </label>
               <div class="field"> <!--Login button-->
-                <a href="{(( url_for('login')}}" class="button is-success has-background-link">Login</a>
+                <a href="{{ url_for('login')}}" class="button is-success has-background-link">Login</a>
               </div>
             </form>
         </div>

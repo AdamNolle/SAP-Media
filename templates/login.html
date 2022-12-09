@@ -20,6 +20,7 @@
           <div class="column is-4">
             <form action="{{ url_for('login')}}" method="post" class="box"> <!--Adjust action form LATER-->
               <div class="field">
+                <div class="msg">{{ msg }}</div>
                 <label class="label"> <!--Label for Username field-->
                   Username
                 </label>
