@@ -1,0 +1,225 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"
+    ></script>
+    <!--Needed for font awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <title>SAP Media</title>
+  </head>
+  <body>
+    <nav class="navbar is-link">
+      <!--Navbar-->
+      <div class="container">
+        <div class="navbar-brand">
+          <h1 class="title has-text-white">Home</h1>
+        </div>
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <a href="home.html" class="navbar-item">Home</a>
+            <a href="addmovie.html" class="navbar-item">Add Movie</a>
+            <a href="login.html" class="navbar-item">Login</a>
+            <a href="profile.html" class="navbar-item">Profile Page</a>
+            <a href="editmovie.html" class="navbar-item">Edit Movie</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="hero is-primary is-fullheight has-background-black">
+      <!--Background color-->
+      <div class="hero-body">
+        <div class="container is-fluid">
+          <div class="columns is-centered">
+            <!--CARD 1-->
+            <div class="column is-2">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img src="./media/uncut.jpg" />
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title has-text-black">Uncut Gems</p>
+                      <a class="subtitle is-6 has-text-black">Rating:</a
+                      ><a class="subtitle is-6 has-text-link"> 4.7 Stars</a>
+                    </div>
+                  </div>
+                  <div class="description">
+                    With his debts mounting and angry collectors closing in, a
+                    fast-talking New York City jeweler risks everything in hope
+                    of staying afloat and alive.
+                    <br /><br />
+                    <a href="https://netflix.com">Netflix</a><a> - </a>
+                    <a class="has-text-link">Watched</a> <br />
+                    <br />
+                    <div class="field">
+                      <!--Delete movie button-->
+                      <a
+                        href="{{ url_for('rmMovie')}}"
+                        class="button is-success has-background-danger"
+                        >Remove From Library</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--CARD 1-->
+            <!--CARD 2-->
+            <div class="column is-2">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img src="./media/moneyball.jpg" />
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title has-text-black">Moneyball</p>
+                      <a class="subtitle is-6 has-text-black">Rating:</a
+                      ><a class="subtitle is-6 has-text-link"> 3.8 Stars</a>
+                    </div>
+                  </div>
+                  <div class="description">
+                    What are you really worth?
+                    <br /><br />
+                    <a href="https://hulu.com">Hulu</a><a> - </a>
+                    <a class="has-text-link">Unwatched</a> <br />
+                    <br />
+                    <div class="field">
+                      <!--Delete movie button-->
+                      <a
+                        href="{{ url_for('rmMovie')}}"
+                        class="button is-success has-background-danger"
+                        >Remove From Library</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--CARD 2-->
+            <!--CARD 3-->
+            <div class="column is-2">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img src="./media/stevejobs.jpg" />
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title has-text-black">Steve Jobs</p>
+                      <a class="subtitle is-6 has-text-black">Rating:</a
+                      ><a class="subtitle is-6 has-text-link"> 5.0 Stars</a>
+                    </div>
+                  </div>
+                  <div class="description">
+                    Can a great man be a good man?
+                    <br /><br />
+                    <a href="https://netflix.com">Netflix</a><a> - </a>
+                    <a class="has-text-link">Watched</a> <br />
+                    <br />
+                    <div class="field">
+                      <!--Delete movie button-->
+                      <a
+                        href="{{ url_for('rmMovie')}}"
+                        class="button is-success has-background-danger"
+                        >Remove From Library</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--CARD 3-->
+            <!--CARD 4-->
+            <div class="column is-2">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img src="./media/spacejam.jpg" />
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title has-text-black">Space Jam</p>
+                      <a class="subtitle is-6 has-text-black">Rating:</a
+                      ><a class="subtitle is-6 has-text-link"> 5.0 Stars</a>
+                    </div>
+                  </div>
+                  <div class="description">
+                    Together, they just might save the world.
+                    <br /><br />
+                    <a href="https://netflix.com">Netflix</a><a> - </a>
+                    <a class="has-text-link">Watched</a> <br />
+                    <br />
+                    <div class="field">
+                      <!--Delete movie button-->
+                      <a
+                        href="{{ url_for('rmMovie')}}"
+                        class="button is-success has-background-danger"
+                        >Remove From Library</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--CARD 4-->
+            <!--CARD 5-->
+            <div class="column is-2">
+              <div class="card">
+                <div class="card-image">
+                  <figure class="image is-4by3">
+                    <img src="./media/starwars.jpg" />
+                  </figure>
+                </div>
+                <div class="card-content">
+                  <div class="media">
+                    <div class="media-content">
+                      <p class="title has-text-black">Star Wars</p>
+                      <a class="subtitle is-6 has-text-black">Rating:</a
+                      ><a class="subtitle is-6 has-text-link"> 5.0 Stars</a>
+                    </div>
+                  </div>
+                  <div class="description">
+                    Luke Skywalker joins forces with a Jedi Knight, a cocky
+                    pilot, a Wookiee and two droids to save the galaxy from the
+                    Empire's world-destroying battle station, while also
+                    attempting to rescue Princess Leia from the mysterious Darth
+                    Vader.
+                    <br /><br />
+                    <a href="https://disneyplus.com">Disney+</a><a> - </a>
+                    <a class="has-text-link">Watched</a> <br />
+                    <br />
+                    <div class="field">
+                      <!--Delete movie button-->
+                      <a
+                        href="{{ url_for('rmMovie')}}"
+                        class="button is-success has-background-danger"
+                        >Remove From Library</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!--CARD 5-->
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
