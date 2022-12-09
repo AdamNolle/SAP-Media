@@ -1,0 +1,91 @@
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/font-awesome.min.css" />
+    <script
+      defer
+      src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"
+    ></script>
+    <!--Needed for font awesome-->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+    <title>SAP Media</title>
+  </head>
+  <body>
+    <nav class="navbar is-link">
+      <!--Navbar-->
+      <div class="container">
+        <div class="navbar-brand">
+          <h1 class="title has-text-white">Edit Profile Page</h1>
+        </div>
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <a href="home.html" class="navbar-item">Home</a>
+            <a href="addmovie.html" class="navbar-item">Add Movie</a>
+            <a href="login.html" class="navbar-item">Login</a>
+            <a href="profile.html" class="navbar-item">Profile Page</a>
+            <a href="editmovie.html" class="navbar-item">Edit Movie</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <div class="hero is-primary is-fullheight has-background-black"> <!--Background color-->
+      <div class="hero-body">
+        <div class="container">
+          <div class="columns is-centered">
+            <div class="column is-4">
+              <form action="{{ url_for('register')}}" method="post" class="box">
+                <div class="field">
+                  <div class="msg">{{ msg }}</div>
+                  <label class="label"> <!--Label for Username field-->
+                    Username
+                  </label>
+                  <div class="control">
+                    <input type="username" class="input" placeholder="Username" name="username">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Password</label>
+                  <div class="control">
+                    <input type="password" class="input" placeholder="Password" name="password">
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">First Name</label>
+                  <div class="control">
+                    <input type="fname" class="input" placeholder="First Name" name="fname"> 
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Middle Name</label>
+                  <div class="control">
+                    <input type="mname" class="input" placeholder="Middle Name" name="mname"> 
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Last Name</label>
+                  <div class="control">
+                    <input type="lname" class="input" placeholder="Last Name" name="lname"> 
+                  </div>
+                </div>
+                <div class="field">
+                  <label class="label">Language</label>
+                  <div class="control">
+                    <input type="language" class="input" placeholder="Language" name="language">
+                  </div>
+                </div>
+                <label class="label"> <!--Label for Register button-->
+                  Save Edit Changes
+                </label>
+                <div class="field"> <!--Login button-->
+                  <a href="{{ url_for('login')}}" class="button is-success has-background-link">Save</a>
+                </div>
+              </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </html>
