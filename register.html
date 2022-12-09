@@ -20,13 +20,13 @@
       <div class="container">
         <div class="columns is-centered">
           <div class="column is-4">
-            <form action="" class="box">
+            <form action="{{ url_for('login')}}" method="post" class="box">
               <div class="field">
                 <label class="label"> <!--Label for Username field-->
                   Username
                 </label>
                 <div class="control has-icons-left">
-                  <input type="username" class="input" placeholder="username">
+                  <input type="username" class="input" placeholder="username" id="username">
                   <span class="icon is-small is-left">
                     <i class="fa-solid fa-user"></i>
                   </span>
@@ -35,7 +35,7 @@
               <div class="field">
                 <label class="label">Password</label>
                 <div class="control has-icons-left">
-                  <input type="password" class="input" placeholder="password">
+                  <input type="password" class="input" placeholder="password" id="password">
                   <span class="icon is-small is-left">
                     <i class="fa fa-lock"></i>
                   </span>
@@ -50,7 +50,7 @@
                 Go To Login
               </label>
               <div class="field"> <!--Login button-->
-                <a href="/login.html" class="button is-success has-background-link">Login</a>
+                <a href="{(( url_for('login')}}" class="button is-success has-background-link">Login</a>
               </div>
             </form>
         </div>
