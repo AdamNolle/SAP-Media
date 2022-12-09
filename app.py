@@ -70,6 +70,24 @@ def register():
         msg = 'Please fill out the form !'
     return render_template('register.html', msg = msg)
  
+@app.route('/movie', methods =['GET', 'POST'])
+def movie(): #This fuction will not be ready until the database is set up 
+    msg = ''
+    if request.method == 'POST' and 'movieTitle' in request.form and 'genre' in request.form and 'platform' in request.form and 'summary' in request.form and 'movieTime' in request.form and 'director' in request.form and 'moviePoster' in request.form:
+        movieTitle = request.form['movieTitle']
+        genre = request.form['genre']
+        platform = request.form['platform']
+        summary = request.form['summary'] 
+        movieTime = request.form['movieTime']
+        director = request.form['director']
+        moviePoster = request.form['moviePoster'] #Not in databse yet 
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        cursor.execute('INSERT INTO movie (movieTitle,Summary,Director,movie_time,moviePoster) VALUES (% s, % s, % s, % s, % s)', (movieTitle, summary, director, movieTime, moviePoster,  )) #Fix this line as it will not insert right now 
+        mysql.connection.commit()
+        msg = 'You have successfully added your movie!'
+    elif request.method == 'POST':
+        msg = 'Please fill out the form !'
+    return render_template('movie.html', msg = msg)
 
 if __name__ == "__main__":
     app.run(host ="localhost", port = int("5000"))

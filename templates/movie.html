@@ -18,7 +18,7 @@
         <div id="navMenu" class="navbar-menu">
           <div class="navbar-end">
             <a href="user.html" class="navbar-item">Home</a>
-            <a href="movie.html" class="navbar-item">Add Movie</a>
+            <a href="{{ url_for('movie')}}" class="navbar-item">Add Movie</a>
             <a href="login.html" class="navbar-item">Login</a>
             <a href="admin.html" class="navbar-item">Admin Page</a>
           </div>
@@ -31,30 +31,33 @@
         <div class="container">
           <div class="columns is-centered">
             <div class="column is-6">
-              <form action="" class="box">
+              <form action="{{ url_for('movie')}}" method="post" class="box">
                 <div class="field">
+                  <div class="msg">{{ msg }}</div>
                   <label class="label"> Movie Title </label>
                   <div class="control">
                     <input
-                      type="username"
+                      type="text"
                       class="input"
                       placeholder="Happy Gilmore"
+                      name="movieTitle"
                     />
                   </div>
                 </div>
                 <div class="field">
                   <label class="label"> Genre </label>
                   <div class="control">
-                    <input type="username" class="input" placeholder="Comedy" />
+                    <input type="username" class="input" placeholder="Comedy" name="genre"/>
                   </div>
                 </div>
                 <div class="field">
                   <label class="label">Platform</label>
                   <div class="control">
                     <input
-                      type="password"
+                      type="text"
                       class="input"
                       placeholder="Netflix"
+                      name="platform"
                     />
                   </div>
                 </div>
@@ -62,39 +65,57 @@
                   <label class="label">Movie Info</label>
                   <div class="control">
                     <input
-                      type="password"
+                      type="text"
                       class="input"
                       placeholder="Adam Sandler plays a hockey player who is secretly great at golf"
+                      name="summary"
                     />
                   </div>
                 </div>
                 <div class="field">
                   <label class="label">Movie Time (in Minutes)</label>
                   <div class="control">
-                    <input type="password" class="input" placeholder="92" />
+                    <input type="text" class="input" placeholder="92" name="movieTime"/>
                   </div>
                 </div>
                 <div class="field">
                   <label class="label">Director</label>
                   <div class="control">
                     <input
-                      type="password"
+                      type="text"
                       class="input"
                       placeholder="Dennis Dugan"
+                      name="director"
                     />
                   </div>
                 </div>
-                <div class="file">
+                <div id="file-js-example" class="file has-name">
                   <label class="file-label">
-                    <input class="file-input" type="file" name="movieposter" />
+                    <input class="file-input" type="file" name="moviePoster">
                     <span class="file-cta">
-                      <span class="file-label">
-                        Upload Movie Poster Here…
+                      <span class="file-icon">
+                        <i class="fas fa-upload"></i>
                       </span>
+                      <span class="file-label">
+                        Choose a file…
+                      </span>
+                    </span>
+                    <span class="file-name">
+                      No file uploaded
                     </span>
                   </label>
                 </div>
-                <br />
+                
+                <script>
+                  const fileInput = document.querySelector('#file-js-example input[type=file]');
+                  fileInput.onchange = () => {
+                    if (fileInput.files.length > 0) {
+                      const fileName = document.querySelector('#file-js-example .file-name');
+                      fileName.textContent = fileInput.files[0].name;
+                    }
+                  }
+                </script>
+              <br />
                 <div class="field">
                   <button class="button is-success has-background-danger">
                     Add Movie To Library
