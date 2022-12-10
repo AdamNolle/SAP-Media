@@ -2,7 +2,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/font-awesome.min.css" />
+
     <script
       defer
       src="https://use.fontawesome.com/releases/v6.1.1/js/all.js"
@@ -24,9 +24,9 @@
         <div id="navMenu" class="navbar-menu">
           <div class="navbar-end">
             <a href="home.html" class="navbar-item">Home</a>
-            <a href="addmovie.html" class="navbar-item">Add Movie</a>
+            <a href="{{ url_for('addmovie')}}"  class="navbar-item">Add Movie</a>
             <a href="login.html" class="navbar-item">Login</a>
-            <a href="profile.html" class="navbar-item">Profile Page</a>
+            <a href="{{ url_for('profile')}}"  class="navbar-item">Profile Page</a>
             <a href="editmovie.html" class="navbar-item">Edit Movie</a>
           </div>
         </div>
@@ -37,7 +37,7 @@
         <div class="container">
           <div class="columns is-centered">
             <div class="column is-4">
-              <form action="{{ url_for('register')}}" method="post" class="box">
+              <form action="{{ url_for('profile')}}" method="post" class="box">
                 <div class="field">
                   <div class="msg">{{ msg }}</div>
                   <label class="label"> <!--Label for Username field-->
@@ -80,8 +80,8 @@
                 <label class="label"> <!--Label for Register button-->
                   Save Edit Changes
                 </label>
-                <div class="field"> <!--Login button-->
-                  <a href="{{ url_for('login')}}" class="button is-success has-background-link">Save</a>
+                <div class="field"> <!--Register button-->
+                  <button class="button is-success has-background-danger">Register</button>
                 </div>
               </form>
           </div>

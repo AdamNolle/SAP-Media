@@ -23,9 +23,9 @@
         <div id="navMenu" class="navbar-menu">
           <div class="navbar-end">
             <a href="home.html" class="navbar-item">Home</a>
-            <a href="addmovie.html" class="navbar-item">Add Movie</a>
+            <a href="{{ url_for('addmovie')}}"  class="navbar-item">Add Movie</a>
             <a href="login.html" class="navbar-item">Login</a>
-            <a href="profile.html" class="navbar-item">Profile Page</a>
+            <a href="{{ url_for('profile')}}" class="navbar-item">Profile Page</a>
             <a href="editmovie.html" class="navbar-item">Edit Movie</a>
           </div>
         </div>
@@ -41,7 +41,7 @@
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
-                    <img src="./media/uncut.jpg" />
+                    <img src="./static/media/uncut.jpg" />
                   </figure>
                 </div>
                 <div class="card-content">
@@ -63,7 +63,7 @@
                     <div class="field">
                       <!--Delete movie button-->
                       <a
-                        href="{{ url_for('rmMovie')}}"
+
                         class="button is-success has-background-danger"
                         >Remove From Library</a
                       >
@@ -78,7 +78,7 @@
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
-                    <img src="./media/moneyball.jpg" />
+                    <img src="./static/media/moneyball.jpg" />
                   </figure>
                 </div>
                 <div class="card-content">
@@ -98,7 +98,7 @@
                     <div class="field">
                       <!--Delete movie button-->
                       <a
-                        href="{{ url_for('rmMovie')}}"
+
                         class="button is-success has-background-danger"
                         >Remove From Library</a
                       >
@@ -113,7 +113,7 @@
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
-                    <img src="./media/stevejobs.jpg" />
+                    <img src="./static/media/stevejobs.jpg" />
                   </figure>
                 </div>
                 <div class="card-content">
@@ -133,7 +133,7 @@
                     <div class="field">
                       <!--Delete movie button-->
                       <a
-                        href="{{ url_for('rmMovie')}}"
+
                         class="button is-success has-background-danger"
                         >Remove From Library</a
                       >
@@ -148,7 +148,7 @@
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
-                    <img src="./media/spacejam.jpg" />
+                    <img src="./static/media/spacejam.jpg" />
                   </figure>
                 </div>
                 <div class="card-content">
@@ -168,7 +168,7 @@
                     <div class="field">
                       <!--Delete movie button-->
                       <a
-                        href="{{ url_for('rmMovie')}}"
+
                         class="button is-success has-background-danger"
                         >Remove From Library</a
                       >
@@ -183,7 +183,7 @@
               <div class="card">
                 <div class="card-image">
                   <figure class="image is-4by3">
-                    <img src="./media/starwars.jpg" />
+                    <img src="./static/media/starwars.jpg" />
                   </figure>
                 </div>
                 <div class="card-content">
@@ -207,7 +207,7 @@
                     <div class="field">
                       <!--Delete movie button-->
                       <a
-                        href="{{ url_for('rmMovie')}}"
+
                         class="button is-success has-background-danger"
                         >Remove From Library</a
                       >
