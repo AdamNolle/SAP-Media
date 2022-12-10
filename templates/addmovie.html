@@ -20,7 +20,7 @@
             <a href="home.html" class="navbar-item">Home</a>
             <a href="{{ url_for('addmovie')}}" class="navbar-item">Add Movie</a>
             <a href="login.html" class="navbar-item">Login</a>
-            <a href="profile.html" class="navbar-item">Profile Page</a>
+            <a href="{{ url_for('profile')}}"  class="navbar-item">Profile Page</a>
             <a href="editmovie.html" class="navbar-item">Edit Movie</a>
           </div>
         </div>
@@ -41,13 +41,14 @@
                       type="text"
                       class="input"
                       placeholder="Happy Gilmore"
+                      name = "movieTitle"
                     />
                   </div>
                 </div>
                 <div class="field">
                   <label class="label"> Genre </label>
                   <div class="control">
-                    <input type="text" class="input" placeholder="Comedy" />
+                    <input type="text" class="input" placeholder="Comedy" name="genre" />
                   </div>
                 </div>
                 <div class="wrapper">
@@ -66,7 +67,7 @@
                 </div>
                 <label class="label"> Platform </label>
                 <div class="select">
-                  <select>
+                  <select name="platform">
                     <option>Netflix</option>
                     <option>Hulu</option>
                     <opion>Disney+</opion>
@@ -80,6 +81,7 @@
                       type="text"
                       class="input"
                       placeholder="Adam Sandler plays a hockey player who is secretly great at golf"
+                      name="summary"
                     />
                   </div>
                 </div>
@@ -96,19 +98,20 @@
                       type="text"
                       class="input"
                       placeholder="Dennis Dugan"
+                      name="movieTime"
                     />
                   </div>
                 </div>
                 <div class="field">
                   <label class="label">User Rating</label>
                   <div class="control">
-                    <input type="text" class="input" placeholder="4.7" />
+                    <input type="text" class="input" placeholder="4.7" name = userRating/>
                   </div>
                 </div>
                 <div class="field">
                   <label class="label">Platform Rating</label>
                   <div class="control">
-                    <input type="text" class="input" placeholder="3.9" />
+                    <input type="text" class="input" placeholder="3.9" name="platformRating"/>
                   </div>
                 </div>
                 <div id="file-js-example" class="file has-name">
