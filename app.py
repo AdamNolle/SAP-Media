@@ -73,13 +73,15 @@ def register():
 @app.route('/addmovie', methods =['GET', 'POST'])
 def addmovie(): #Need to add in genre, platform, user and platform ratings  
     msg = ''
-    if request.method == 'POST' and 'movieTitle' in request.form and 'genre' in request.form and 'platform' in request.form and 'summary' in request.form and 'movieTime' in request.form and 'director' in request.form and 'moviePoster' in request.form:
+    if request.method == 'POST' and 'movieTitle' in request.form and 'genre' in request.form and 'platform' in request.form and 'summary' in request.form and 'movieTime' in request.form and 'director' in request.form and 'userRating' in request.form and 'platformRating' in request.form and 'moviePoster' in request.form:
         movieTitle = request.form['movieTitle']
         genre = request.form['genre']
         platform = request.form['platform']
         summary = request.form['summary'] 
         movieTime = request.form['movieTime']
         director = request.form['director']
+        userRating = request.form['userRating']
+        platformRating = request.form['platformRating']
         moviePoster = request.form['moviePoster'] #Not in databse yet 
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('INSERT INTO movie (movieTitle,Summary,Director,movie_time,moviePoster) VALUES (% s, % s, % s, % s, % s)', (movieTitle, summary, director, movieTime, moviePoster,  )) 
@@ -113,6 +115,27 @@ def profile():
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
     return render_template('profile.html', msg = msg)
+
+@app.route('/editmovie', methods =['GET', 'POST'])
+def editmovie(): #Need to add in genre, platform, user and platform ratings  
+    msg = ''
+    if request.method == 'POST' and 'movieTitle' in request.form and 'genre' in request.form and 'platform' in request.form and 'summary' in request.form and 'movieTime' in request.form and 'director' in request.form and 'userRating' in request.form and 'platformRating' in request.form and 'moviePoster' in request.form:
+        movieTitle = request.form['movieTitle']
+        genre = request.form['genre']
+        platform = request.form['platform']
+        summary = request.form['summary'] 
+        movieTime = request.form['movieTime']
+        director = request.form['director']
+        userRating = request.form['userRating']
+        platformRating = request.form['platformRating']
+        moviePoster = request.form['moviePoster'] #Not in databse yet 
+        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+        #Make a update movie thing here. 
+        mysql.connection.commit()
+        msg = 'You have successfully added your movie!'
+    elif request.method == 'POST':
+        msg = 'Please fill out the form !'
+    return render_template('editmovie.html', msg = msg)
 
 if __name__ == "__main__":
     app.run(host ="localhost", port = int("5000"))
