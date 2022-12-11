@@ -1,36 +1,83 @@
 <!-- Search Bar -->
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta name="viewport" content="width=device-width, initial-  
-        scale=1">
-        <link rel="stylesheet" 
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-
-        awesome/4.7.0/css/font-awesome.min.css">
-        <link rel="stylesheet" href="/static/index.css">
-    </head>
-    <body>
-        <h1><center>Library</center></h1>
-        <h1>{{ msg }}</h1>
-        <form class="example" method="post" action="{{ url_for('searchmovie')}}" 
-         style="margin:auto;max-width:600px">
-            <input type="text" placeholder="Search by author or 
-             book, or all to see all the data" name="movie">
-            <button type="submit"><i class="fa fa-search"></i>
-            </button>
-        </form>
-        <p></p>
-        
-        <center></center>
-            <tr>
-                <p> {{movie[0]}}</br>{{movie[1]}} </br>{{movie[2]}} </br>{{movie[3]}}</br> {{movie[4]}}</br> {{movie[6]}}</p>
-                <p>{{movie[5]}}</p>
-                <img src="data:;base64,{{ image }}"/>
-            </td>
-                </br>
-            </tr>
-        
-        </center>
-      
-    </body>
+  <head>
+    <meta
+      name="viewport"
+      content="width=device-width, initial-  
+        scale=1"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-
+        awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="/static/index.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"
+    />
+  </head>
+  <body>
+    <nav class="navbar is-link">
+      <!--Navbar-->
+      <div class="container">
+        <div class="navbar-brand">
+          <h1 class="title has-text-white">Search Results</h1>
+        </div>
+        <div id="navMenu" class="navbar-menu">
+          <div class="navbar-end">
+            <a href="home.html" class="navbar-item">Home</a>
+            <a href="{{ url_for('searchmovie')}}" class="navbar-item"
+              >Search Movie</a
+            >
+            <a href="{{ url_for('addmovie')}}" class="navbar-item">Add Movie</a>
+            <a href="login.html" class="navbar-item">Login</a>
+            <a href="{{ url_for('profile')}}" class="navbar-item"
+              >Profile Page</a
+            >
+            <a href="editmovie.html" class="navbar-item">Edit Movie</a>
+          </div>
+        </div>
+      </div>
+    </nav>
+    <h1>{{ msg }}</h1>
+    <form
+      class="example"
+      method="post"
+      action="{{ url_for('searchmovie')}}"
+      style="margin: auto; max-width: 600px"
+    >
+      <input
+        type="text"
+        placeholder="Search by author or 
+             book, or all to see all the data"
+        name="movie"
+      />
+      <button type="submit">Search</button>
+    </form>
+    <br />
+    <h2 class="title has-text-black" style="text-align: center">
+      {{movie[0]}}
+    </h2>
+    <h2 class="title has-text-black" style="text-align: center">
+      {{movie[1]}}
+    </h2>
+    <h2 class="title has-text-black" style="text-align: center">
+      {{movie[2]}}
+    </h2>
+    <h2 class="title has-text-black" style="text-align: center">
+      {{movie[3]}}
+    </h2>
+    <h2 class="title has-text-black" style="text-align: center">
+      {{movie[4]}}
+    </h2>
+    <h2 class="title has-text-black" style="text-align: center">
+      {{movie[6]}}
+    </h2>
+    <h2 class="title has-text-black" style="text-align: center">
+      {{movie[5]}}
+    </h2>
+    <img src="data:;base64,{{ image }}" />
+  </body>
 </html>
