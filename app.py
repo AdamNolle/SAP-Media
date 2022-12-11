@@ -13,8 +13,8 @@ app.secret_key = 'your secret key'
  
  
 app.config['MYSQL_HOST'] = 'localhost'
-app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'password'
+app.config['MYSQL_USER'] = 'root'   #Change your username if applicable 
+app.config['MYSQL_PASSWORD'] = 'password' #Change the password here if appliable 
 app.config['MYSQL_DB'] = 'sapmedia'
  
  
@@ -55,7 +55,7 @@ def register():
         fname = request.form['fname']
         mname = request.form['mname'] 
         lname = request.form['lname']
-        language = request.form['language']
+        fgenre = request.form['language']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM user WHERE username = % s', (username, ))
         user = cursor.fetchone()
@@ -64,7 +64,9 @@ def register():
         elif not re.match(r'[A-Za-z0-9]+', username):
             msg = 'name must contain only characters and numbers !'
         else:
-            cursor.execute('INSERT INTO user VALUES (% s, % s, % s, % s, % s, % s)', (username, password, fname, mname, lname, language, ))
+            cursor.execute('INSERT INTO user (username,password,fName,mName,lName) VALUES (% s, % s, % s, % s, % s)', (username, password, fname, mname, lname, ))
+            mysql.connection.commit()
+            cursor.execute('INSERT INTO User_Genre VALUES (% s, % s)', (username, fgenre, ))
             mysql.connection.commit()
             msg = 'You have successfully registered !'
     elif request.method == 'POST':
@@ -74,6 +76,7 @@ def register():
 @app.route('/addmovie', methods =['GET', 'POST'])
 def addmovie(): #Need to add in genre, platform, user and platform ratings  
     msg = ''
+
     if request.method == 'POST' and 'movieTitle' in request.form and 'genre' in request.form and 'platform' in request.form and 'summary' in request.form and 'movieTime' in request.form and 'director' in request.form and 'userRating' in request.form and 'platformRating' in request.form and 'moviePoster' in request.form:
         movieTitle = request.form['movieTitle']
         genre = request.form['genre']
@@ -83,10 +86,20 @@ def addmovie(): #Need to add in genre, platform, user and platform ratings
         director = request.form['director']
         userRating = request.form['userRating']
         platformRating = request.form['platformRating']
-        moviePoster = request.form['moviePoster'] #Not in databse yet 
+        moviePoster = request.form['moviePoster'] 
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('INSERT INTO movie (movieTitle,Summary,Director,movie_time,moviePoster) VALUES (% s, % s, % s, % s, % s)', (movieTitle, summary, director, movieTime, moviePoster,  )) 
+        cursor.execute('INSERT INTO movie (name,summary,director,duration,moviePoster) VALUES (% s, % s, % s, % s, % s)', (movieTitle, summary, director, movieTime, moviePoster,  )) 
         mysql.connection.commit()
+        cursor.execute('INSERT INTO Movie_Genre (movieID,genreName) VALUE ((SELECT id FROM movie where name = %s LIMIT 1),%s)', (movieTitle,genre, ))
+        mysql.connection.commit()
+        cursor.execute('INSERT INTO Watch_On (movieID,platformName) VALUE ((SELECT id FROM movie where name = %s LIMIT 1),%s)', (movieTitle,platform, ))
+        mysql.connection.commit()
+        cursor.execute('INSERT INTO Rating (platformRating,platformName,username,movieID) VALUE (%s,%s,%s,(SELECT id FROM movie where name = %s LIMIT 1))', (platformRating,platform,session['username'], movieTitle, ))
+        mysql.connection.commit()
+        #cursor.execute("SELECT id FROM Rating where movieID = (SELECT id FROM movie where name = %s Limit 1)", (movieTitle,))
+        #ratingID = cursor.fetchone()
+        cursor.execute('INSERT INTO User_Rating (ratingID,userRating) VALUE ((SELECT id FROM Rating where movieID = (SELECT id FROM movie where name = %s LIMIT 1) Limit 1),%s)', (movieTitle,userRating, ))
+        mysql.connection.commit() 
         msg = 'You have successfully added your movie!'
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
@@ -101,7 +114,7 @@ def profile():
         fname = request.form['fname']
         mname = request.form['mname'] 
         lname = request.form['lname']
-        language = request.form['language']
+        fgenre = request.form['language']
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
         cursor.execute('SELECT * FROM user WHERE username = % s', (username, ))
         user = cursor.fetchone()
@@ -110,8 +123,10 @@ def profile():
         elif not re.match(r'[A-Za-z0-9]+', username):
             msg = 'name must contain only characters and numbers !'
         else:
-            cursor.execute('UPDATE user SET  username =% s, password =% s, fname =% s, mname =% s, lname =% s, language =% s WHERE username =% s', (username, password, fname, mname, lname, language, (session['username'], ), ))
+            cursor.execute('UPDATE user SET  username =% s, password =% s, fname =% s, mname =% s, lname =% s WHERE username =% s', (username, password, fname, mname, lname, (session['username'], ), ))
             mysql.connection.commit()
+            cursor.execute('UPDATE User_Genre set username =% s, favoriteGenre = %s WHERE username=%s' , (username,fgenre,(session['username'],),))
+            session['username'] = username
             msg = 'You have successfully registered !'
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
@@ -147,17 +162,17 @@ def searchmovie():
             movie = request.form['movie']
             # search by author or book
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-            cursor.execute("SELECT movieTitle FROM movie where movieTitle = %s", (movie,))
+            cursor.execute("SELECT name FROM movie where movieTitle = %s", (movie,))
             title = cursor.fetchone()
-            cursor.execute("SELECT Summary FROM movie where movieTitle = %s", (movie,))
+            cursor.execute("SELECT summary FROM movie where movieTitle = %s", (movie,))
             summary = cursor.fetchone()
-            cursor.execute("SELECT Director FROM movie where movieTitle = %s", (movie,))
+            cursor.execute("SELECT director FROM movie where movieTitle = %s", (movie,))
             director = cursor.fetchone()
-            cursor.execute("SELECT movie_time FROM movie where movieTitle = %s", (movie,))
+            cursor.execute("SELECT duration FROM movie where movieTitle = %s", (movie,))
             movie_time = cursor.fetchone()
             cursor.execute("SELECT moviePoster FROM movie where movieTitle = %s", (movie,))
             moviePoster = cursor.fetchone()
-            cursor.execute("SELECT Watched FROM movie where movieTitle = %s", (movie,))
+            cursor.execute("SELECT watched FROM movie where movieTitle = %s", (movie,))
             Watched = cursor.fetchone()
             stringList = [title,summary,director,movie_time,moviePoster,Watched]
             # all in the search box will return all the tuples
