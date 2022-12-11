@@ -3,6 +3,7 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
+from base64 import b64encode
  
  
 app = Flask(__name__)
@@ -160,14 +161,15 @@ def searchmovie():
             Watched = cursor.fetchone()
             stringList = [title,summary,director,movie_time,moviePoster,Watched]
             # all in the search box will return all the tuples
-            return render_template('search.html', movie = stringList )
+            return render_template('searchResults.html', movie = stringList )
         except:
             msg = "There is no movie by that title"
-            return render_template('searchmovie.html', msg = msg) 
+            return render_template('search.html', msg = msg) 
         
     
     return render_template('search.html')
 # end point for inserting data dynamicaly in the database
+
 
 
 if __name__ == "__main__":
