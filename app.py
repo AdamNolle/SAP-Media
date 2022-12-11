@@ -144,10 +144,20 @@ def editmovie(): #Need to add in genre, platform, user and platform ratings
         director = request.form['director']
         userRating = request.form['userRating']
         platformRating = request.form['platformRating']
-        moviePoster = request.form['moviePoster'] #Not in databse yet 
+        moviePoster = request.form['moviePoster'] 
         cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        #Make a update movie thing here. 
+        cursor.execute('UPDATE movie SET  name =% s, summary =% s, director =% s, duration =% s, moviePoster =% s WHERE name = %s', (movieTitle, summary, director, movieTime, moviePoster, movieTitle, ))
         mysql.connection.commit()
+        cursor.execute('SELECT id FROM movie where name = %s Limit 1', (movieTitle,))
+        movieID = cursor.fetchone()
+        movieID = movieID['id']
+        cursor.execute('UPDATE Movie_Genre SET genreName = %s WHERE movieID = % s', (genre,movieID,))
+        cursor.execute('UPDATE Watch_On SET platformName = %s WHERE movieID = % s', (platform,movieID,))
+        cursor.execute('UPDATE Rating SET platformRating = %s, platformName = %s, username = %s  WHERE movieID = %s', (platformRating,platform,session['username'],movieID,))
+        cursor.execute('SELECT id FROM Rating where movieID = %s Limit 1', (movieID,))
+        ratingID = cursor.fetchone()
+        ratingID = ratingID['id']
+        cursor.execute('UPDATE User_Rating set userRating=%s where ratingID = %s', (userRating,ratingID, ))
         msg = 'You have successfully added your movie!'
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
