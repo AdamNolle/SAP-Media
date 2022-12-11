@@ -18,7 +18,7 @@ app.config['MYSQL_DB'] = 'sapmedia'
  
  
 mysql = MySQL(app)
- 
+
  
 @app.route('/')
 @app.route('/login', methods =['GET', 'POST'])
@@ -137,5 +137,40 @@ def editmovie(): #Need to add in genre, platform, user and platform ratings
         msg = 'Please fill out the form !'
     return render_template('editmovie.html', msg = msg)
 
+
+
+@app.route('/searchmovie', methods=['GET', 'POST'])
+def searchmovie():
+    if request.method == "POST":
+        try:
+            movie = request.form['movie']
+            # search by author or book
+            cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            cursor.execute("SELECT movieTitle FROM movie where movieTitle = %s", (movie,))
+            title = cursor.fetchone()
+            cursor.execute("SELECT Summary FROM movie where movieTitle = %s", (movie,))
+            summary = cursor.fetchone()
+            cursor.execute("SELECT Director FROM movie where movieTitle = %s", (movie,))
+            director = cursor.fetchone()
+            cursor.execute("SELECT movie_time FROM movie where movieTitle = %s", (movie,))
+            movie_time = cursor.fetchone()
+            cursor.execute("SELECT moviePoster FROM movie where movieTitle = %s", (movie,))
+            moviePoster = cursor.fetchone()
+            cursor.execute("SELECT Watched FROM movie where movieTitle = %s", (movie,))
+            Watched = cursor.fetchone()
+            stringList = [title,summary,director,movie_time,moviePoster,Watched]
+            # all in the search box will return all the tuples
+            return render_template('search.html', movie = stringList )
+        except:
+            msg = "There is no movie by that title"
+            return render_template('searchmovie.html', msg = msg) 
+        
+    
+    return render_template('search.html')
+# end point for inserting data dynamicaly in the database
+
+
 if __name__ == "__main__":
+    app.debug = True
+    app.app_context()
     app.run(host ="localhost", port = int("5000"))
