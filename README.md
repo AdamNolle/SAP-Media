@@ -5,10 +5,8 @@
 1. Clone Project
 2. Install Bulma in the folder
    `npm install bulma`
-
-## To-Do
-
-This is currently all GUI and the SQL/Database for this project still needs to be created
+3. Install flask
+   `pip install flask`
 
 ## Helpful Links/Tutorials
 
