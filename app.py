@@ -94,7 +94,7 @@ def addmovie(): #Need to add in genre, platform, user and platform ratings
         mysql.connection.commit()
         cursor.execute('INSERT INTO Watch_On (movieID,platformName) VALUE ((SELECT id FROM movie where name = %s LIMIT 1),%s)', (movieTitle,platform, ))
         mysql.connection.commit()
-        cursor.execute('INSERT INTO Rating (platformRating,platformName,username,movieID) VALUE (%s,%s,%s,(SELECT id FROM movie where name = %s LIMIT 1))', (platformRating,platform,session['username'], movieTitle, ))
+        cursor.execute('INSERT INTO Rating (platformRating,platformName,username,movieID) VALUE (%s,%s,(SELECT ownerUser FROM platform where name =%s ),(SELECT id FROM movie where name = %s LIMIT 1))', (platformRating,platform,platform, movieTitle, ))
         mysql.connection.commit()
         #cursor.execute("SELECT id FROM Rating where movieID = (SELECT id FROM movie where name = %s Limit 1)", (movieTitle,))
         #ratingID = cursor.fetchone()
@@ -172,6 +172,7 @@ def searchmovie():
             movie = request.form['movie']
             # search by author or book
             cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
+            """
             cursor.execute("SELECT name FROM movie where movieTitle = %s", (movie,))
             title = cursor.fetchone()
             cursor.execute("SELECT summary FROM movie where movieTitle = %s", (movie,))
@@ -183,10 +184,11 @@ def searchmovie():
             cursor.execute("SELECT moviePoster FROM movie where movieTitle = %s", (movie,))
             moviePoster = cursor.fetchone()
             cursor.execute("SELECT watched FROM movie where movieTitle = %s", (movie,))
-            Watched = cursor.fetchone()
-            stringList = [title,summary,director,movie_time,moviePoster,Watched]
+            """
+            cursor.execute("SELECT * FROM movie where movieTitle = %s", (movie,))
+            movie = cursor.fetchone()
             # all in the search box will return all the tuples
-            return render_template('searchResults.html', movie = stringList )
+            return render_template('searchResults.html', movie = movie )
         except:
             msg = "There is no movie by that title"
             return render_template('search.html', msg = msg) 
